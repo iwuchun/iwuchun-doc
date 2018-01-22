@@ -1,10 +1,12 @@
 <?php 
-include 'm.php';
+include('m.php');
 $sql = "SELECT*FROM gbook ORDER BY 'id' DESC";
-$mysql_select_db($mysql_database,$conn);
-$result = mysql_query($sql);
-
-while ($row=mysql_fetch_row($result)) {
+$result = mysqli_query($conn,$sql);
+if (!$result) {
+ printf("Error: %s\n", mysqli_error($conn));
+ exit();
+}
+while ($row=mysqli_fetch_row($result)) {
 	# code...
 	if($row[2]==1){
 		$gender = '男';
@@ -29,6 +31,6 @@ while ($row=mysql_fetch_row($result)) {
 </table>
 	<?php 
 	}
-	mysql_free_result($result);
+	mysqli_free_result($result);
 	 ?>
 
