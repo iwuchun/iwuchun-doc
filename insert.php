@@ -1,5 +1,5 @@
 <?php
-include('m.php');
+include'm.php';
 $ip=$_SERVER['REMOTE_ADDR'];
 
 $sql = "INSERT INTO 'gbook'('id','name','sex','email','info','ip','time_at')
