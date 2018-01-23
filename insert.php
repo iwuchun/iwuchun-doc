@@ -12,7 +12,7 @@ if(!empty($_SERVER['HTTP_CLIENT_IP'])){
 }}
 $user_IP = getIp();
 
-$sql = "INSERT INTO gbook(id,name,sex,email,info,ip,time_at) VALUES(NULL,{$_POST['name']},{$_POST['sex']},{$_POST['email']},{$_POST['info']},'{$user_IP}',Now())";
+$sql = "INSERT INTO gbook(id,name,sex,email,info,ip,time_at) VALUES(NULL,'{$_POST['name']}','{$_POST['sex']}','{$_POST['email']}','{$_POST['info']}','{$user_IP}',Now())";
 
 $result = mysqli_query($conn,$sql);
 if (!$result) {
