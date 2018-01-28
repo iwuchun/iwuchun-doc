@@ -1,5 +1,6 @@
 <?php 
 include('m.php');
+include ('header.php');
 $sql = "SELECT*FROM gbook ORDER BY id DESC";
 $result = mysqli_query($conn,$sql);
 if (!$result) {

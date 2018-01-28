@@ -2,14 +2,34 @@
 <html>
 <head>
 	<title>登录</title>
+	<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
 </head>
 <body>
-<form name='msg' method="post" action='login_ok.php'>
-<p>用户名：<input type="text" name="nickname" size="20"></p>
-<p>密码：<input type="text" name="password" size="20"></p>
-<p>验证码：<input type="text" name='verification' size='4'></p>
-<p><input type="submit" name="submit" value="提交"> <input type="reset" name="submit2" value="重设"></p>
-<img name="validate" onclick="validate.src+='?' + Math.random();" src="verification.php"  alt="点击刷新">  
-</form>
+
+<p>用户名：<input type="text" name="nickname" size="20" id="nickname"></p>
+<p>密码：<input type="text" name="password" size="20" id="password"></p>
+	<p>验证码：<input type="text" name='verification' size='4' id="code_num"><img name="validate" onclick="validate.src+='?' + Math.random();" src="verification.php"  alt="点击刷新">  </p>
+<p><input type="submit" name="submit" value="提交" id="sub"> <input type="reset" name="submit2" value="重设"></p>
+
+
 </body>
 </html>
+<script>
+$(function () {
+    $('#sub').click(function(){
+        var code_num=$('#code_num').val();
+        var nickname=$('#nickname').val();
+        var password=$('#password').val();
+	$.post("check_code.php",{code:code_num},function(msg) {
+            if (msg == 1) {
+                $.post("login_ok.php",{nickname:nickname,password:password},function(msg) {
+					alert(msg);
+				});
+            } else {
+                alert("验证码错误！");
+            }
+        });
+    });
+});
+
+</script>
